@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects
-image: assets/images/pic11.jpg
+image:
 ---
 
 <p>Projects</p>
