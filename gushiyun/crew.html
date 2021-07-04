@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src='common.js'></script>
+</head>
+<body>
+</body>
+<script>
+const size = 256;
+
+function displayImg(index) {
+  var number = numbers[index];
+  var pinyin = numberInfo[number][NUMBERINFO_INDEX_PINYIN];
+  window.location = "pic/%s.jpg".format(pinyin);
+}
+
+function introduction() {
+  for (index in numbers) {
+    var number = numbers[index];
+    var name = numberInfo[number][NUMBERINFO_INDEX_NAME];
+    var pinyin = numberInfo[number][NUMBERINFO_INDEX_PINYIN];
+  
+    var outerDiv = document.createElement("div");
+    outerDiv.style = "position:relative; display:inline-block; width:%s; height:%s;".format(size, size);
+    outerDiv.index = index;
+    outerDiv.onclick = function() {
+    	displayImg(this.index);
+    };
+    document.body.appendChild(outerDiv);
+  
+    var img = document.createElement("img");
+    img.src = "pic/%s.jpg".format(pinyin);
+    img.width = size;
+    img.height = size;
+    img.style.transform = "rotate(%sdeg)".format(numberInfo[number][NUMBERINFO_INDEX_ROTATE]);
+    outerDiv.appendChild(img);
+  
+    var innerDiv = document.createElement("div");
+    innerDiv.innerHTML = "%s%s".format(number, name);
+    innerDiv.style.position = "absolute";
+    innerDiv.style.top = 0;
+    innerDiv.style.color = "blue";
+    innerDiv.style.fontWeight = "bold";
+    outerDiv.appendChild(innerDiv);
+  }
+}
+
+introduction();
+
+</script>
+</html>

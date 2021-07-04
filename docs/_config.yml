@@ -1,0 +1,29 @@
+# Site settings
+title: Yang Gu's Homepage
+subtitle:
+email: gyagp0@gmail.com
+description:
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+author:
+street_address:
+city:
+state:
+zip_code:
+country: China
+phone:
+
+# Social settings
+500px_url:
+facebook_url: https://www.facebook.com/yang.gu.790
+github_url: https://github.com/gyagp
+gitlab_url:
+googleplus_url:
+instagram_url:
+linkedin_url: https://www.linkedin.com/in/yang-gu-b673661b
+pinterest_url:
+slack_url:
+twitter_url: https://twitter.com/gyagp
+
+# Build settings
+markdown: kramdown

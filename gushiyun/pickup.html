@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<link href="fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+<script src="fullcalendar/lib/moment.min.js"></script>
+<script src="fullcalendar/lib/jquery.min.js"></script>
+<script src="fullcalendar/fullcalendar.min.js"></script>
+<script src="common.js"></script>
+<script>
+
+// http://www.easybots.cn/api/holiday.php?m=201801,201802,201803,201804,201805,201806,201807,201808,201809,201810,201811,201812
+// 工作日0，休息日1，节假日2
+var holidays = {
+  "201810":{"01":"2","02":"2","03":"2","04":"1","05":"1","06":"1","07":"1","13":"1","14":"1","20":"1","21":"1","27":"1","28":"1"},
+  "201811":{"04":"1","05":"1","06":"1","10":"1","17":"1","18":"1","24":"1","25":"1"},
+  "201812":{"01":"1","02":"1","08":"1","09":"1","15":"1","16":"1","22":"1","23":"1","30":"2","31":"2"},
+  "201901":{"01":"2","05":"1","06":"1","12":"1","13":"1","19":"1","20":"1","26":"1","27":"1"},
+  "201902":{"04":"2","05":"2","06":"2","07":"2","08":"2","09":"2","10":"2","16":"1","17":"1","23":"1","24":"1"},
+  "201903":{"02":"1","03":"1","09":"1","10":"1","16":"1","17":"1","23":"1","24":"1","30":"1","31":"1"},
+  "201904":{"05":"2","06":"2","07":"2","13":"1","14":"1","20":"1","21":"1","29":"2","30":"2"},
+  "201905":{"01":"2","04":"1","05":"1","11":"1","12":"1","18":"1","19":"1","25":"1","26":"1"},
+  "201906":{"01":"1","02":"1","07":"2","08":"2","09":"2","15":"1","16":"1","22":"1","23":"1","29":"1","30":"1"},
+  "201907":{"06":"1","07":"1","13":"1","14":"1","20":"1","21":"1","27":"1","28":"1"},
+  "201908":{"03":"1","04":"1","10":"1","11":"1","17":"1","18":"1","24":"1","25":"1","31":"1"},
+  "201909":{"01":"1","07":"1","08":"1","13":"2","14":"2","15":"2","21":"1","22":"1","28":"1"},
+  "201910":{"01":"2","02":"2","03":"2","04":"2","05":"2","06":"2","07":"2","13":"1","19":"1","20":"1","26":"1","27":"1"},
+  "201911":{"02":"1","03":"1","09":"1","10":"1","16":"1","17":"1","23":"1","24":"1","30":"1"},
+  "201912":{"01":"1","07":"1","08":"1","14":"1","15":"1","21":"1","22":"1","28":"1","29":"1"},
+};
+var specialEvents = [
+  ["2018-11-03", "进博会调整，上周一课"],
+  ["2018-11-05", "进博会调整，不上课"],
+  ["2018-11-06", "进博会调整，不上课"],
+  ["2018-11-11", "进博会调整，上周二课"],
+  ["2018-12-29", "元旦调整，上课"],
+  ["2018-12-30", "元旦，不上课"],
+  ["2018-12-31", "元旦，不上课"],
+  ["2019-01-01", "元旦，不上课"],
+  ["2019-02-02", "春节调整，上课"],
+  ["2019-02-03", "春节调整，上课"],
+  ["2019-02-04", "春节，不上课"],
+  ["2019-02-05", "春节，不上课"],
+  ["2019-02-06", "春节，不上课"],
+  ["2019-02-07", "春节，不上课"],
+  ["2019-02-08", "春节，不上课"],
+  ["2019-02-09", "春节，不上课"],
+  ["2019-02-10", "春节，不上课"],
+  ["2019-04-05", "清明节，不上课"],
+  ["2019-04-06", "清明节，不上课"],
+  ["2019-04-07", "清明节，不上课"],
+  ["2019-04-27", "劳动节调整，上课"],
+  ["2019-04-28", "劳动节调整，上课"],
+  ["2019-04-29", "劳动节，不上课"],
+  ["2019-04-30", "劳动节，不上课"],
+  ["2019-05-01", "劳动节，不上课"],
+  ["2019-06-07", "端午节，不上课"],
+  ["2019-06-08", "端午节，不上课"],
+  ["2019-06-09", "端午节，不上课"],
+  ["2019-09-13", "中秋节，不上课"],
+  ["2019-09-14", "中秋节，不上课"],
+  ["2019-09-15", "中秋节，不上课"],
+  ["2019-09-29", "国庆节调整，上课"],
+  ["2019-10-01", "国庆节，不上课"],
+  ["2019-10-02", "国庆节，不上课"],
+  ["2019-10-03", "国庆节，不上课"],
+  ["2019-10-04", "国庆节，不上课"],
+  ["2019-10-05", "国庆节，不上课"],
+  ["2019-10-06", "国庆节，不上课"],
+  ["2019-10-07", "国庆节，不上课"],
+  ["2019-10-12", "国庆节调整，上课"],
+];
+var events = [];
+var DailyNumbers = 2;
+var currentNumber = "42";
+var currentIndex = numbers.indexOf(currentNumber);
+var currentYear = 2018;
+var currentMonth = 10;
+var currentDay = 1;
+var endYear = 2019;
+var endMonth = 12;
+var endDay = 31;
+
+// special events
+specialEvents.forEach(function(value, index, array) {
+  var event = {};
+  event["start"] = value[0];
+  event["title"] = value[1];
+  event["color"] = "red";
+  events.push(event);
+});
+
+// general events
+while (currentYear <= endYear && currentMonth <= endMonth && currentDay <= endDay) {
+  var days = new Date(currentYear, currentMonth, 0).getDate();
+  var yearStr = currentYear.toString();
+  
+  var monthStr = currentMonth.toString();
+  if (currentMonth < 10)
+    monthStr = "0%s".format(monthStr);
+
+  var dayStr = currentDay.toString();
+  if (currentDay < 10) 
+    dayStr = "0%s".format(dayStr);
+
+  var yearMonthStr = yearStr + monthStr;
+
+  if (holidays[yearMonthStr][dayStr] != "1" && holidays[yearMonthStr][dayStr] != "2") {
+    var event = {};
+    event["start"] = "%s-%s-%s".format(yearStr, monthStr, dayStr);
+    var items = [];
+    var i = 0;
+    for (i = 0; i < DailyNumbers; i++) {
+      var tmpIndex = (currentIndex + i) % numbersLength;
+      var name = numberInfo[numbers[tmpIndex]][NUMBERINFO_INDEX_NAME];
+      items.push(numbers[tmpIndex] + name);
+    }
+    event["title"] = items.join(", ");
+    events.push(event);
+    currentIndex += DailyNumbers;
+  } 
+
+  currentDay += 1;
+  if (currentDay > days) {
+    currentDay = 1;
+    currentMonth += 1;
+    if (currentMonth > 12) {
+      currentMonth = 1;
+      currentYear += 1;
+    }
+  }
+}
+
+// setup
+var date = new Date();
+var today = "%s-%s-01".format(date.getFullYear(), date.getMonth() + 1);
+$(document).ready(function() {
+  $("#calendar").fullCalendar({
+    locale: "zh-cn",
+    header: {
+      left: "prev,next today",
+      center: "title"
+    },
+    defaultDate: today,
+    events: events,
+  });
+});
+</script>
+</head>
+<body>
+  <div id="calendar"></div>
+</body>
+</html>

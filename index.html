@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>gyagp's homepage</title>
+</head>
+<body>
+</body>
+<script>
+"use strict";
+let name_link = {
+  "History of China": "https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1k2WUVOtVk7A6vmHnL7CCpG53ZKgIhjx-Yh2LrUj3Pdc&font=Default&lang=en&initial_zoom=2&height=650",
+}
+
+let timeline = document.createElement("div");
+document.body.append(timeline);
+
+let p = document.createElement("p");
+p.innerHTML = "Timeline";
+timeline.appendChild(p);
+
+let ul = document.createElement("ul");
+timeline.appendChild(ul);
+
+for (let name in name_link) {
+  let link =name_link[name];
+  let li = document.createElement("li");
+  let a = document.createElement("a");
+  a.textContent = name;
+  a.setAttribute('href', link);
+  li.appendChild(a);
+  ul.appendChild(li);
+}
+</script>
+</html>
