@@ -1,0 +1,138 @@
+<style>
+  input {
+    position: absolute;
+    left: 50%;
+  }
+
+  button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 30;
+  }
+
+  div {
+    padding-top: 60;
+  }
+
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100;
+  }
+
+  table,
+  th,
+  td {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border: 1px solid black;
+    font-size: larger;
+  }
+
+</style>
+
+<body>
+  <script>
+    "use strict";
+    let arr;
+    let time = 0;
+    let intervalId;
+    let table = null;
+    let nextNumber = 1;
+
+    const input = document.createElement("input");
+    input.align = "center";
+    input.type = "number";
+    input.value = 5;
+    input.min = 1;
+    input.max = 20;
+    document.body.append(input);
+
+    const button = document.createElement("button");
+    button.ali = "center";
+    button.innerText = "开始";
+    document.body.append(button);
+
+    const divTime = document.createElement("div");
+    divTime.align = "center";
+    divTime.innerText = displayTime(time);
+    document.body.append(divTime);
+
+    const divNext = document.createElement("div");
+    divNext.align = "center";
+    divNext.innerText = `下一个数: ${nextNumber}`;
+    document.body.append(divNext);
+
+    button.onclick = function () {
+      if (button.innerText == "开始" || button.innerText == "继续") {
+        if (button.innerText == "开始") {
+          time = 0;
+          // gen table
+          if (table) {
+            document.body.removeChild(table);
+          }
+          table = document.createElement("table");
+          table.align = 'center';
+          document.body.append(table);
+
+          let size = input.value;
+          arr = [];
+          for (let i = 1; i <= size * size; i++) {
+            arr.push(i);
+          }
+          arr.sort(function () { return Math.random() - 0.5 });
+
+          for (let i = 0; i < size; i++) {
+            let row = table.insertRow(i);
+            for (let j = 0; j < size; j++) {
+              let cell = row.insertCell(j);
+              cell.onclick = function (e) {
+                console.log(e.target.innerHTML);
+                if (e.target.innerHTML == nextNumber) {
+                  nextNumber++;
+                  if (nextNumber > size * size) {
+                    nextNumber = 1;
+                    clearInterval(intervalId);
+                    button.innerText = "开始";
+                  }
+                  divNext.innerText = `下一个数: ${nextNumber}`;
+                }
+              };
+              cell.innerText = arr[i * size + j];
+            }
+          }
+        } else if (button.innerText == "继续") {
+          table.style.visibility = "visible";
+        }
+
+        button.innerText = "暂停";
+        intervalId = setInterval(() => {
+          time += 1;
+          divTime.innerText = displayTime(time);
+        }, 1000);
+      } else if (button.innerText == "暂停") {
+        table.style.visibility = "hidden";
+        clearInterval(intervalId);
+        button.innerText = "继续";
+      }
+    }
+
+    function displayTime(time) {
+      let h = Math.floor(time / 3600) % 24;
+      let m = Math.floor(time / 60) % 60;
+      let s = time % 60;
+      return `${pad(h)}:${pad(m)}:${pad(s)}`;
+    }
+
+    function pad(n) {
+      return n.toString().padStart(2, '0');
+    }
+
+  </script>
+</body>
