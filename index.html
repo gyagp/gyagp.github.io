@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f7f3" />
+    <meta
+      name="description"
+      content="顾扬的个人项目集：从日常工具、语言学习到浏览器游戏，记录把好奇心做成作品的过程。"
+    />
+    <meta property="og:title" content="顾扬 Yang Gu — 好奇心驱动，代码实现" />
+    <meta
+      property="og:description"
+      content="日常工具、学习应用、浏览器游戏与 AI 实验。探索顾扬的个人项目。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://homepage.gyagp.workers.dev/" />
+    <title>顾扬 Yang Gu — 好奇心驱动，代码实现</title>
+    <link rel="icon" href="assets/images/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/portfolio.css" />
+    <script type="module" src="assets/js/portfolio.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#projects" data-i18n="skip">跳到项目</a>
+    <header class="site-header wrap">
+      <a class="brand" href="#top" aria-label="Yang Gu · Home">
+        <span class="brand-mark" aria-hidden="true"
+          >y<span>g</span><i></i
+        ></span>
+        <span>Yang Gu<span class="brand-handle"> / gyagp</span></span>
+      </a>
+      <nav class="navigation" aria-label="主导航" data-i18n-aria="navigation">
+        <a href="#projects" data-i18n="navProjects">项目</a>
+        <a href="#about" data-i18n="navAbout">关于</a>
+        <a href="#contact" data-i18n="navContact">联系</a>
+      </nav>
+      <div class="language-switch" role="group" aria-label="语言 / Language">
+        <button
+          type="button"
+          data-language="zh"
+          aria-pressed="true"
+          lang="zh-CN"
+        >
+          中
+        </button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-language="en" aria-pressed="false" lang="en">
+          EN
+        </button>
+      </div>
+      <div class="account-control">
+        <span id="auth-user" class="mono" hidden>gyagp</span>
+        <button id="auth-button" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path></svg
+          ><span id="auth-button-label">登录</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="tiny-cross" aria-hidden="true">✳</span>
+            <span data-i18n="intro">你好，我是顾扬</span
+            ><span class="eyebrow-divider"></span
+            ><span class="mono">A PERSONAL WORKSHOP</span>
+          </p>
+          <h1 id="hero-title">
+            <span data-i18n="heroLineOne">把好奇心，</span><br /><span
+              class="hero-accent"
+              data-i18n="heroLineTwo"
+              >做成小作品。</span
+            >
+          </h1>
+          <p class="hero-description" data-i18n="heroDescription">
+            从一个日常需要，到一个可以使用的作品。这里放着我做的工具、游戏，以及一些正在生长的想法。
+          </p>
+          <a class="primary-link" href="#projects"
+            ><span data-i18n="explore">逛逛我的项目</span
+            ><span aria-hidden="true">↗</span></a
+          >
+          <span class="hero-note mono" data-i18n="heroNote"
+            >一点实用，一点好玩。</span
+          >
+        </div>
+        <div class="workshop" aria-hidden="true">
+          <div class="workshop-grid"></div>
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <span class="workshop-coordinate mono">FIG. 01 — THE WORKSHOP</span>
+          <div class="floating-note note-code">
+            <span class="window-dots"><i></i><i></i><i></i></span
+            ><span class="code-line">const idea = <b>curiosity</b>;</span
+            ><span class="code-line"
+              >build(idea)<span class="code-cursor">_</span></span
+            ><span class="code-caption mono">SMALL IDEAS. REAL THINGS.</span>
+          </div>
+          <div class="floating-note note-character">
+            <span class="note-hanzi">知</span
+            ><span class="mono">KEEP LEARNING</span><i class="note-seal">学</i>
+          </div>
+          <div class="floating-note note-score">
+            <span class="mono">JUST ONE MORE ROUND</span>
+            <div class="score-digits">21<span>:</span>19</div>
+            <div class="score-rule">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <div class="workshop-spark">✳</div>
+          <div class="workshop-caption">
+            <span class="status-dot"></span
+            ><span class="mono">ALWAYS A WORK IN PROGRESS</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        class="projects-section wrap"
+        aria-labelledby="projects-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow mono">01 / SELECTED WORK</p>
+            <h2 id="projects-title">
+              <span data-i18n="projectsTitle">我的项目</span
+              ><sup id="project-total">13</sup>
+            </h2>
+          </div>
+          <p class="section-description" data-i18n="projectsDescription">
+            用得上的工具，忍不住想做的尝试。
+          </p>
+        </div>
+        <div class="project-toolbar">
+          <div
+            class="filters"
+            role="group"
+            aria-label="项目分类"
+            data-i18n-aria="filterLabel"
+          >
+            <button
+              type="button"
+              class="filter active"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              <span data-i18n="filterAll">全部</span
+              ><span class="filter-count" data-count="all">13</span>
+            </button>
+            <button
+              type="button"
+              class="filter"
+              data-filter="tools"
+              aria-pressed="false"
+            >
+              <span data-i18n="filterTools">实用工具</span
+              ><span class="filter-count" data-count="tools">3</span>
+            </button>
+            <button
+              type="button"
+              class="filter"
+              data-filter="learning"
+              aria-pressed="false"
+            >
+              <span data-i18n="filterLearning">学习与创作</span
+              ><span class="filter-count" data-count="learning">4</span>
+            </button>
+            <button
+              type="button"
+              class="filter"
+              data-filter="games"
+              aria-pressed="false"
+            >
+              <span data-i18n="filterGames">游戏</span
+              ><span class="filter-count" data-count="games">2</span>
+            </button>
+            <button
+              type="button"
+              class="filter"
+              data-filter="ai"
+              aria-pressed="false"
+            >
+              <span data-i18n="filterAI">AI 实验</span
+              ><span class="filter-count" data-count="ai">1</span>
+            </button>
+            <button
+              type="button"
+              class="filter"
+              data-filter="graphics"
+              aria-pressed="false"
+            >
+              <span data-i18n="filterGraphics">Web 图形</span
+              ><span class="filter-count" data-count="graphics">3</span>
+            </button>
+          </div>
+          <label class="project-search"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5"></circle>
+              <path d="m16 16 5 5"></path></svg
+            ><input
+              id="project-search"
+              type="search"
+              maxlength="100"
+              placeholder="搜索项目"
+              aria-label="搜索项目"
+              data-i18n-placeholder="search"
+              data-i18n-aria="search"
+          /></label>
+        </div>
+        <div class="project-order-tools">
+          <p data-i18n="orderHint">
+            拖动卡片手柄或使用箭头排序，偏好保存在当前浏览器。
+          </p>
+          <button type="button" id="reset-order" data-i18n="resetOrder">
+            恢复默认顺序
+          </button>
+        </div>
+        <div class="order-save-bar" hidden id="order-save-bar">
+          <span id="order-save-status" role="status" aria-live="polite"></span
+          ><button type="button" id="retry-order" data-i18n="retrySave" hidden>
+            重试保存
+          </button>
+        </div>
+        <p
+          class="sr-only"
+          id="result-count"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <section
+          class="project-group"
+          id="guest-projects"
+          aria-labelledby="guest-projects-title"
+        >
+          <div class="project-group-heading">
+            <h3 id="guest-projects-title">
+              <span data-i18n="guestProjects">公开展示</span
+              ><span class="group-count mono" id="guest-project-total">13</span>
+            </h3>
+            <p data-i18n="guestProjectsDescription">
+              已发布或代码公开的项目，访客均可查看。
+            </p>
+          </div>
+          <div class="project-grid" id="project-grid"></div>
+          <p
+            class="group-empty"
+            id="guest-projects-empty"
+            data-i18n="groupEmpty"
+            hidden
+          >
+            此分组没有符合筛选条件的项目。
+          </p>
+        </section>
+        <section
+          class="project-group personal-projects"
+          id="personal-projects"
+          aria-labelledby="personal-projects-title"
+          hidden
+        >
+          <div class="project-group-heading">
+            <h3 id="personal-projects-title">
+              <span data-i18n="personalProjects">我的其它项目</span
+              ><span
+                class="group-count mono"
+                id="personal-project-total"
+              ></span>
+            </h3>
+            <p data-i18n="personalProjectsDescription">
+              仅 gyagp 可见 · 未发布的私有项目与企业项目
+            </p>
+          </div>
+          <div class="project-grid" id="personal-project-grid"></div>
+          <p
+            class="group-empty"
+            id="personal-projects-empty"
+            data-i18n="groupEmpty"
+            hidden
+          >
+            此分组没有符合筛选条件的项目。
+          </p>
+        </section>
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">⌕</span>
+          <h3 data-i18n="emptyTitle">还没有找到这个项目</h3>
+          <p data-i18n="emptyDescription">换个关键词，或看看全部项目。</p>
+          <button
+            type="button"
+            id="reset-filters"
+            class="text-button"
+            data-i18n="reset"
+          >
+            查看全部项目 →
+          </button>
+        </div>
+        <noscript
+          ><div class="noscript-projects">
+            <p>
+              请启用 JavaScript 使用语言切换和筛选。Enable JavaScript for
+              language switching and filters.
+            </p>
+            <ul>
+              <li>
+                记个分 / Jigefen — 私有代码 / Private code ·
+                <a href="https://jigefen.gyagp.workers.dev/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                词间 Lexi / Lexi — 私有代码 / Private code ·
+                <a href="https://github.com/gyagp/dictionary/releases/latest"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/gyagp/tank">钢铁边境 / IRONCLAD</a>
+                — 公开代码 / Public code
+              </li>
+              <li>
+                温故 / Wengu — 私有代码 / Private code ·
+                <a href="https://wengu.gyagp.workers.dev/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/gyagp/handwriting"
+                  >书法集 / Handwriting</a
+                >
+                — 公开代码 / Public code ·
+                <a
+                  href="https://handwriting-3pw0h8r36-gyagps-projects.vercel.app"
+                  >查看部署（需 Vercel 登录） / Deployment (Vercel sign-in)</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/rubiks-cube"
+                  >3D 魔方 / Rubik’s Cube</a
+                >
+                — 公开代码 / Public code ·
+                <a href="https://webgfx.github.io/rubiks-cube/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/webgpu-demos"
+                  >WebGPU Demos / WebGPU Demos</a
+                >
+                — 公开代码 / Public code ·
+                <a href="https://webgfx.github.io/webgpu-demos/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/aquarium-web"
+                  >WebGPU 水族馆 / WebGPU Aquarium</a
+                >
+                — 公开代码 / Public code ·
+                <a href="https://webgfx.github.io/aquarium-web/webgpu/aquarium"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/online-toolkit"
+                  >在线工具箱 / Online Toolkit</a
+                >
+                — 公开代码 / Public code ·
+                <a href="https://webgfx.github.io/online-toolkit/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/gpumark"
+                  >GPUMark / GPUMark</a
+                >
+                — 公开代码 / Public code
+              </li>
+              <li>
+                <a href="https://github.com/webgfx/pantheon-toolkit"
+                  >Pantheon Toolkit / Pantheon Toolkit</a
+                >
+                — 公开代码 / Public code
+              </li>
+              <li>
+                灵指 Fingoo / Fingoo — 私有代码 / Private code ·
+                <a href="https://fingoo.gyagp.workers.dev/"
+                  >发布入口 / Release</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/gyagp/backpack"
+                  >Backpack / Backpack</a
+                >
+                — 公开代码 / Public code
+              </li>
+            </ul>
+          </div></noscript
+        >
+        <div class="projects-footnote">
+          <span class="footnote-mark" aria-hidden="true">↳</span>
+          <p data-i18n="projectsFootnote">
+            发布不改变代码权限；私有仓库和受限下载仍需授权。企业访问不计入发布。
+          </p>
+          <span class="mono" data-i18n="projectsClosing"
+            >持续折腾，陆续更新。</span
+          >
+        </div>
+      </section>
+
+      <section
+        id="about"
+        class="about-section wrap"
+        aria-labelledby="about-title"
+      >
+        <div class="about-heading">
+          <p class="eyebrow mono">02 / BEHIND THE PROJECTS</p>
+          <h2 id="about-title">
+            <span data-i18n="aboutLineOne">在代码与</span><br /><span
+              data-i18n="aboutLineTwo"
+              >日常之间。</span
+            ><span class="orange-dot">✳</span>
+          </h2>
+        </div>
+        <div class="about-copy">
+          <p class="about-lead" data-i18n="aboutLead">
+            我是顾扬，一名喜欢把想法付诸实践的开发者。
+          </p>
+          <p data-i18n="aboutDescription">
+            关注 Web 图形、WebGPU 和
+            AI，也喜欢为日常的小问题写一点代码。这里既有认真打磨的工具，也有纯粹出于兴趣的实验。离开键盘，我也喜欢打羽毛球。
+          </p>
+          <div class="interest-tags">
+            <span>Web Graphics</span><span>WebGPU</span><span>AI</span
+            ><span data-i18n="badminton">羽毛球</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="contact-section wrap"
+        aria-labelledby="contact-title"
+      >
+        <div class="contact-panel">
+          <div>
+            <p class="eyebrow mono">03 / SAY HELLO</p>
+            <h2 id="contact-title" data-i18n="contactTitle">
+              好想法，从交流开始。
+            </h2>
+            <p data-i18n="contactDescription">
+              关于项目、技术，或者只是打个招呼。
+            </p>
+            <div class="email-row">
+              <a href="mailto:gyagp0@gmail.com"
+                >gyagp0@gmail.com <span aria-hidden="true">↗</span></a
+              ><button
+                id="copy-email"
+                type="button"
+                aria-label="复制邮箱"
+                data-i18n-aria="copyEmail"
+                title="复制邮箱"
+                data-i18n-title="copyEmail"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                  <path
+                    d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="contact-links">
+            <a
+              href="https://github.com/gyagp"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub <span aria-hidden="true">↗</span></a
+            ><a
+              href="https://www.linkedin.com/in/yang-gu-b673661b"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn <span aria-hidden="true">↗</span></a
+            ><a
+              href="https://twitter.com/gyagp"
+              target="_blank"
+              rel="noopener noreferrer"
+              >X / Twitter <span aria-hidden="true">↗</span></a
+            ><a
+              href="https://www.facebook.com/yang.gu.790"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Facebook <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <p>© <span id="year">2026</span> Yang Gu</p>
+      <p class="footer-note" data-i18n="footerNote">保持好奇，继续创造。</p>
+      <a href="#top"
+        ><span data-i18n="backToTop">回到顶部</span
+        ><span aria-hidden="true"> ↑</span></a
+      >
+    </footer>
+    <dialog id="login-dialog" aria-labelledby="login-title">
+      <form id="login-form">
+        <div class="login-heading">
+          <p class="eyebrow mono">THE PRIVATE WORKSHOP</p>
+          <button
+            id="close-login"
+            type="button"
+            data-i18n-aria="closeLogin"
+            aria-label="关闭登录"
+          >
+            ×
+          </button>
+        </div>
+        <h2 id="login-title" data-i18n="loginTitle">登录我的工作室</h2>
+        <p class="login-description" data-i18n="loginDescription">
+          登录后查看我的其它项目，目前仅限 gyagp。
+        </p>
+        <label for="login-username" data-i18n="username">用户名</label>
+        <input
+          id="login-username"
+          name="username"
+          autocomplete="username"
+          value="gyagp"
+          maxlength="64"
+          required
+        />
+        <label for="login-password" data-i18n="password">密码</label>
+        <input
+          id="login-password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          maxlength="256"
+          required
+        />
+        <p id="login-error" class="login-error" role="alert" hidden></p>
+        <button id="login-submit" type="submit" class="primary-link">
+          <span data-i18n="login">登录</span><span aria-hidden="true">↗</span>
+        </button>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

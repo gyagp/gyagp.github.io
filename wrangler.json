@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "homepage",
+  "main": "cloudflare/homepage.js",
+  "account_id": "f56e091adbebc96c25ea502b2934b59e",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PORTFOLIO_ACCOUNT",
+        "class_name": "PortfolioAccount",
+        "script_name": "gyagp-home"
+      }
+    ]
+  }
+}

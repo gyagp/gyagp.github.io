@@ -4,3 +4,11 @@ _site/
 Gemfile.lock
 *.gem
 .jekyll-cache
+node_modules/
+artifacts/
+.private/
+.env
+.env.*
+.dev.vars*
+.wrangler/
+dist/

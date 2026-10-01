@@ -27,3 +27,18 @@ twitter_url: https://twitter.com/gyagp
 
 # Build settings
 markdown: kramdown
+
+# The new homepage is plain HTML/CSS/JS. Keep development files off GitHub Pages.
+exclude:
+  - README.md
+  - tests
+  - artifacts
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .private
+  - server
+  - scripts
+  - cloudflare
+  - dist
+  - wrangler.json

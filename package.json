@@ -1,0 +1,22 @@
+{
+  "name": "yang-gu-portfolio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node server/index.js",
+    "start": "node server/index.js",
+    "setup": "node scripts/setup-admin.js",
+    "test": "node --test tests/server.test.js",
+    "test:browser": "node tests/portfolio.cjs",
+    "build": "node scripts/build-site.js",
+    "build:workers": "node scripts/build-workers.js",
+    "cf:deploy": "node scripts/deploy.js",
+    "test:cloudflare": "node tests/cloudflare.cjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.138.0"
+  }
+}

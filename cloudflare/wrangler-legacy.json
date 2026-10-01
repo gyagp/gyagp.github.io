@@ -1,0 +1,15 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "gyagp-home",
+  "main": "legacy.js",
+  "account_id": "f56e091adbebc96c25ea502b2934b59e",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [
+      { "name": "PORTFOLIO_ACCOUNT", "class_name": "PortfolioAccount" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PortfolioAccount"] }]
+}
