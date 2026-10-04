@@ -1,5 +1,9 @@
 import publicProjects from "./projects.js";
-import { isGuestVisible, toGuestProject } from "./project-access.js";
+import {
+  compareProjectUpdates,
+  isGuestVisible,
+  toGuestProject,
+} from "./project-access.js";
 
 (() => {
   "use strict";
@@ -42,8 +46,8 @@ import { isGuestVisible, toGuestProject } from "./project-access.js";
       personalProjects: "我的其它项目",
       personalProjectsDescription: "仅 gyagp 可见 · 未发布的私有项目与企业项目",
       groupEmpty: "此分组没有符合筛选条件的项目。",
-      orderHint: "拖动卡片手柄或使用箭头排序，偏好保存在当前浏览器。",
-      orderHintServer: "拖动或置顶调整排列，登录后的偏好会同步到服务器。",
+      orderHint: "默认按更新日期从新到旧排列；拖动或置顶可自定义顺序。",
+      orderHintServer: "默认按更新日期从新到旧排列；自定义顺序会同步到服务器。",
       savingOrder: "正在保存…",
       savedOrder: "已保存到服务器",
       saveOrderError: "尚未保存，请重试。",
@@ -51,9 +55,9 @@ import { isGuestVisible, toGuestProject } from "./project-access.js";
       started: "开始",
       updated: "更新",
       datePending: "待确认",
-      resetOrder: "恢复默认顺序",
+      resetOrder: "按更新日期排序",
       orderUpdated: "顺序已调整",
-      orderReset: "已恢复默认顺序",
+      orderReset: "已按更新日期从新到旧排列",
       pinned: "已置顶",
       pinProject: "置顶项目",
       unpinProject: "取消置顶",
@@ -164,9 +168,9 @@ import { isGuestVisible, toGuestProject } from "./project-access.js";
         "Only for gyagp · Unpublished private and enterprise projects",
       groupEmpty: "No projects match these filters in this section.",
       orderHint:
-        "Drag the handle or use the arrows. Your order is saved in this browser.",
+        "Newest updates first by default. Drag or pin projects to customize the order.",
       orderHintServer:
-        "Drag or pin projects. Signed-in preferences sync to the server.",
+        "Newest updates first by default. Your custom order syncs to the server.",
       savingOrder: "Saving…",
       savedOrder: "Saved to server",
       saveOrderError: "Not saved yet. Please retry.",
@@ -174,9 +178,9 @@ import { isGuestVisible, toGuestProject } from "./project-access.js";
       started: "Started",
       updated: "Updated",
       datePending: "Unconfirmed",
-      resetOrder: "Reset order",
+      resetOrder: "Sort by latest update",
       orderUpdated: "Order updated",
-      orderReset: "Default order restored",
+      orderReset: "Sorted by latest update",
       pinned: "Pinned",
       pinProject: "Pin project",
       unpinProject: "Unpin project",
@@ -477,7 +481,7 @@ import { isGuestVisible, toGuestProject } from "./project-access.js";
       (a, b) =>
         Number(isPinned(b.id)) - Number(isPinned(a.id)) ||
         (positions.get(a.id) ?? Infinity) - (positions.get(b.id) ?? Infinity) ||
-        (a.order ?? 0) - (b.order ?? 0),
+        compareProjectUpdates(a, b),
     );
   }
   function isPinned(id) {

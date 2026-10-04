@@ -1,4 +1,16 @@
 // Project visibility and repository visibility are separate decisions.
+export function compareProjectUpdates(a, b) {
+  const timestamp = (project) => {
+    const value = Date.parse(project.updatedAt);
+    return Number.isFinite(value) ? value : -Infinity;
+  };
+  return (
+    timestamp(b) - timestamp(a) ||
+    (a.order ?? 0) - (b.order ?? 0) ||
+    a.id.localeCompare(b.id)
+  );
+}
+
 export function isPublished(project) {
   const release = project.release;
   if (!release || !["web", "download"].includes(release.kind)) return false;

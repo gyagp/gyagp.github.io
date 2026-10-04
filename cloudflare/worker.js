@@ -4,6 +4,7 @@ import { promisify } from "node:util";
 import publicProjects from "../assets/js/projects.js";
 import privateProjects from "../.private/projects.json";
 import {
+  compareProjectUpdates,
   isGuestVisible,
   toGuestProject,
   normalizePreferences,
@@ -17,7 +18,7 @@ const allProjects = [
       project,
     ]),
   ).values(),
-].sort((a, b) => a.order - b.order);
+].sort(compareProjectUpdates);
 const guestProjects = allProjects.filter(isGuestVisible).map(toGuestProject);
 const additionalProjects = allProjects.filter(
   (project) => !isGuestVisible(project),

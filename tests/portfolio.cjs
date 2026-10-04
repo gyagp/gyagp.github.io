@@ -5,9 +5,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 
 (async () => {
   const { createPortfolioServer } = await import("../server/app.js");
-  const { testAuth, testPassword, protectedFixture } = await import(
-    "./fixtures.js"
-  );
+  const { testAuth, testPassword, protectedFixture } =
+    await import("./fixtures.js");
   const { default: publicProjects } = await import("../assets/js/projects.js");
   const server = createPortfolioServer({
     auth: testAuth,
@@ -156,6 +155,14 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
         .locator("#project-grid .project-card")
         .evaluateAll((cards) => cards.map((card) => card.id));
     const defaultOrder = await cardOrder();
+    const latestFirst = [...publicProjects]
+      .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))
+      .map((project) => "project-" + project.id);
+    assert.deepEqual(
+      defaultOrder,
+      latestFirst,
+      "Newest updates appear first by default",
+    );
     const firstId = defaultOrder[0];
     await page.locator("#" + firstId + " [data-order-down]").click();
     assert.equal(
@@ -548,6 +555,17 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
       await noScriptPage.locator(".noscript-projects li").count(),
       count,
     );
+    const fallbackLinks = await noScriptPage
+      .locator(".noscript-projects li")
+      .evaluateAll((items) =>
+        items.map((item) => [...item.querySelectorAll("a")].map((a) => a.href)),
+      );
+    for (const [index, id] of latestFirst.entries()) {
+      const project = publicProjects.find((p) => "project-" + p.id === id);
+      assert.ok(
+        fallbackLinks[index].includes(project.repo || project.release.url),
+      );
+    }
     assert.ok(!(await noScriptPage.content()).includes(protectedFixture.repo));
     assert.deepEqual(errors, [], "No unexpected browser errors");
     console.log(

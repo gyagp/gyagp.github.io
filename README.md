@@ -72,6 +72,7 @@
 - visibility：public / private / restricted / unknown，仅表示代码权限。非 public 的完整记录放在私有目录；是否向访客展示由代码公开或非企业发布入口共同决定。unknown 表示权限未确认。
 - release.kind：web / download / deployment；release.access：public / account / registration / restricted / webgpu / enterprise / vercel。enterprise 不视为发布；deployment + vercel 是受保护的部署记录。
 - createdAt 取 GitHub created_at；updatedAt 取 pushed_at，表示最近代码推送日期。显示 UTC 日期；没有仓库读取权限时为 null，页面显示“待确认”。
+- 默认按 updatedAt 从新到旧排列，日期未知的项目排在最后；相同时间按 order、id 稳定排序。自定义顺序和置顶优先，点击“按更新日期排序”可恢复日期倒序。
 - 没有已确认的发布链接时 release 为 null，releaseState 为 unlisted / private / verify / sourceBuild / extension。
 - future 空数组显示“待更新”。来自仓库的计划可附 futureSource 链接；不构成完成时间承诺。
 - art 可选，引用 portfolio.js 中的通用插画。不使用私有项目名命名公开素材。

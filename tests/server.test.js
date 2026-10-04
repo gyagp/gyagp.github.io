@@ -11,7 +11,11 @@ import {
   publishedFixture,
   enterpriseFixture,
 } from "./fixtures.js";
-import { isGuestVisible, isPublished } from "../assets/js/project-access.js";
+import {
+  compareProjectUpdates,
+  isGuestVisible,
+  isPublished,
+} from "../assets/js/project-access.js";
 
 async function start(options = {}) {
   const server = createPortfolioServer({
@@ -40,6 +44,32 @@ async function start(options = {}) {
 const sessionCookie = (response) =>
   response.headers.get("set-cookie").split(";")[0];
 
+test("project updates sort newest first, with stable ties and unknown dates last", () => {
+  const projects = [
+    { id: "unknown", order: -10, updatedAt: null },
+    { id: "old", order: -5, updatedAt: "2025-01-01T00:00:00Z" },
+    { id: "tie-b", order: 1, updatedAt: "2026-10-04T08:00:00+08:00" },
+    { id: "newest", order: 100, updatedAt: "2026-10-04T01:00:00Z" },
+    { id: "tie-a", order: 1, updatedAt: "2026-10-04T00:00:00Z" },
+    { id: "tie-first", order: 0, updatedAt: "2026-10-04T00:00:00Z" },
+    { id: "invalid", order: -9, updatedAt: "unconfirmed" },
+    { id: "missing", order: -8 },
+  ];
+  assert.deepEqual(
+    projects.sort(compareProjectUpdates).map((p) => p.id),
+    [
+      "newest",
+      "tie-first",
+      "tie-a",
+      "tie-b",
+      "old",
+      "unknown",
+      "invalid",
+      "missing",
+    ],
+  );
+});
+
 test("public metadata and static routes never reveal protected files", async () => {
   const app = await start();
   try {
@@ -47,6 +77,10 @@ test("public metadata and static routes never reveal protected files", async () 
     const data = await response.json();
     assert.equal(data.authenticated, false);
     assert.equal(data.projects.length, publicProjects.length);
+    assert.deepEqual(
+      data.projects,
+      [...data.projects].sort(compareProjectUpdates),
+    );
     assert.ok(data.projects.every(isGuestVisible));
     assert.ok(!JSON.stringify(data).includes(protectedFixture.repo));
     assert.match(response.headers.get("cache-control"), /no-store/);

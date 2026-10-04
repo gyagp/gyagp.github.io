@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import publicProjects from "../assets/js/projects.js";
 import {
+  compareProjectUpdates,
   isGuestVisible,
   toGuestProject,
   normalizePreferences,
@@ -58,7 +59,7 @@ export function createPortfolioServer({
         project,
       ]),
     ).values(),
-  ].sort((a, b) => a.order - b.order);
+  ].sort(compareProjectUpdates);
   const publicData = allProjects.filter(isGuestVisible).map(toGuestProject);
   const additionalProjects = allProjects.filter(
     (project) => !isGuestVisible(project),
