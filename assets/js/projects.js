@@ -1,6 +1,37 @@
 // Visitor-visible projects; private code links remain server-only.
 export default [
   {
+    id: "lingoost",
+    order: -1,
+    art: "reading",
+    category: "learning",
+    visibility: "private",
+    name: {
+      zh: "Lingoost 英语学习",
+      en: "Lingoost",
+    },
+    subtitle: "EXPLORE MORE THROUGH ENGLISH",
+    description: {
+      zh: "用英语，探索更大的世界。面向青少年的分级学习，结合 AI 个性化课程、听说读写训练与间隔复习，让每一步进步都有迹可循。",
+      en: "Explore more through English. Graded learning for teens combines personalized AI lessons, listening, speaking, reading, writing, and spaced repetition.",
+    },
+    tags: {
+      zh: ["英语学习", "AI 个性化课程", "间隔复习"],
+      en: ["English learning", "AI lessons", "Spaced repetition"],
+    },
+    release: {
+      url: "https://lingoost.gyagp.workers.dev/",
+      kind: "web",
+      access: "account",
+    },
+    future: {
+      zh: [],
+      en: [],
+    },
+    createdAt: "2026-10-04T02:40:28Z",
+    updatedAt: "2026-10-04T02:40:57Z",
+  },
+  {
     id: "jigefen",
     order: 0,
     art: "score",
